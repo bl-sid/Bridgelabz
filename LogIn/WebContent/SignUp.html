@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Sign Up</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="log.css">
+</head>
+
+<body>
+	<div>
+		<form id="mydiv" method="post" action="Register">
+			<p>Create An Account</p>
+			<table id="mytable">
+
+				<tr>
+					<th>Name:</th>
+					<td><input type="text" name="firstname" class="myid"
+						placeholder="First Name" size="10" id="fname"> <input
+						type="text" name="lastname" class="myid" placeholder="Last Name"
+						size="10" id="lname"></td>
+				</tr>
+
+				<tr>
+					<th>Email Id:</th>
+					<td><input type="email" name="email" class="myid"
+						placeholder="Email id" size="22" id="emailid"></td>
+				</tr>
+
+				<tr>
+					<th>Contact Number:</th>
+					<td><input type="tel" name="contact" class="myid"
+						placeholder="Contact Number" size="22" id="cno"></td>
+				</tr>
+
+				<tr>
+					<th>New Password:</th>
+					<td><input type="password" name="password" class="myid"
+						placeholder="Password" size="22" id="pass"></td>
+				</tr>
+
+				<tr>
+					<th>Confirm Password:</th>
+					<td><input type="password" name="password" class="myid"
+						placeholder="Password" size="22" id="pass2"></td>
+				</tr>
+
+
+			</table>
+
+			<input type="submit" id="submitbutton" value="Sign Up"
+				onClick="return onSignUpClick()">
+
+			<script type="text/javascript" src="logscript.js">
+				
+			</script>
+		</form>
+	</div>
+</body>

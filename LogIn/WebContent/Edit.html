@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> Edit Your Details </title>
+<link rel="stylesheet" href="log.css">
+</head>
+<body>
+
+	<div>
+		<form id="mydiv" method="post" action="EditDetails">
+			<p>Edit Details</p>
+			<table id="mytable">
+
+				<tr>
+					<th>Name:</th>
+					<td><input type="text" name="firstname" class="myid"
+						placeholder="First Name" size="10" id="fname"> <input
+						type="text" name="lastname" class="myid" placeholder="Last Name"
+						size="10" id="lname"></td>
+				</tr>
+				<tr>
+					<th>Email Id:</th>
+					<td><input type="email" name="email" class="myid"
+						placeholder="Email id" size="22" id="emailid"></td>
+				</tr>
+
+				
+
+				<tr>
+					<th>Contact Number:</th>
+					<td><input type="tel" name="contact" class="myid"
+						placeholder="Contact Number" size="22" id="cno"></td>
+				</tr>
+
+
+			</table>
+
+			<input type="submit" id="submitbutton" value="Edit"
+				onClick="return onSignUpClick()">
+
+			<script type="text/javascript" src="logscript.js">
+				
+			</script>
+		</form>
+	</div>
+</body>
+</html>

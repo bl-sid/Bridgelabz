@@ -1,0 +1,23 @@
+import javax.servlet.annotation.WebServlet;
+
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
+@WebServlet("/SessionListener")
+public class SessionListener implements HttpSessionListener{
+
+	static int count = 0;
+	@Override
+	public void sessionCreated(HttpSessionEvent arg0) {
+		count++;
+		HttpSession session = arg0.getSession();
+		session.setAttribute("count", count);
+	}
+
+	@Override
+	public void sessionDestroyed(HttpSessionEvent arg0) {
+		
+	}
+	
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Log In</title>
+<meta charset="utf-8">
+
+<style>
+body {
+	background-color: #DCDCDC;
+	background-size: cover;
+	text-align: center;
+}
+
+form {
+	font-size: 20px;
+	border: 2px solid white;
+	margin: auto;
+	padding-top: 35px;
+	padding-bottom: 35px;
+	padding-left: 10px;
+	width: 350px;
+	margin-top: 150px;
+	font-family: courier;
+	box-shadow: 5px 5px 5px #888888;
+	background-color: #D3D3D3;
+}
+
+.myid {
+	font-size: 16px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#emailid {
+	margin-left: 15px;
+}
+
+#submitid {
+	font-size: 20px;
+	margin-top: 25px;
+}
+
+#resetid {
+	font-size: 20px;
+	margin-left: 30px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#signid {
+	font-size: 20px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#submitid:hover {
+	background-color: aqua;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
+
+#resetid:hover {
+	background-color: red;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
+
+#signid:hover {
+	background-color: green;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
+</style>
+
+</head>
+
+<body>
+	<form action = "CookieServlet" method="POST">
+
+		Email Id: <input type="email" name="email" class="myid" id="emailid"
+			placeholder="Email id">
+		<br> <br>
+		
+		<input type="submit" name="submit" value="Log In" class="myid" id="submitid"
+			onClick="return onSubmitClick()"
+
+	</form>
+
+</body>
+</html>

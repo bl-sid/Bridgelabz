@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+body {
+	margin-top: 150px;
+	background-color: #DCDCDC;
+	background-size: cover;
+	font-size: 20px;
+	font-family: courier;
+}
+
+#mytable {
+	text-align: right;
+	padding: 15px;
+	padding-top: 0px;
+}
+
+#mydiv {
+	border: 2px solid white;
+	width: 500px;
+	margin: auto;
+	box-shadow: 5px 5px 5px #888888;
+	background-color: #D3D3D3;
+}
+
+td {
+	padding-left: 30px;
+	text-align: left;
+}
+
+.myid {
+	font-size: 16px;
+	background-color: #ADD8E6;
+	font-family: courier;
+	background-color: white;
+}
+
+#submitbutton {
+	font-size: 25px;
+	margin-left: 200px;
+	margin-bottom: 20px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#submitbutton:hover {
+	background-color: aqua;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
+
+p {
+	text-align: center;
+	font-size: 35px;
+}
+
+form {
+	font-size: 20px;
+	border: 2px solid white;
+	margin: 10px;
+	padding-top: 35px;
+	padding-bottom: 35px;
+	padding-left: 10px;
+	width: 350px;
+	margin-top: 200px;
+	font-family: courier;
+	box-shadow: 5px 5px 5px #888888;
+	background-color: #D3D3D3;
+}
+
+.myid {
+	font-size: 16px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#submitid {
+	font-size: 20px;
+	margin-top: 25px;
+}
+
+#resetid {
+	font-size: 20px;
+	margin-left: 30px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#signid {
+	font-size: 20px;
+	background-color: #ADD8E6;
+	font-family: courier;
+}
+
+#submitid:hover {
+	background-color: aqua;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
+
+#resetid:hover {
+	background-color: red;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
+
+#signid:hover {
+	background-color: green;
+	color: white;
+	box-shadow: 2px 2px 2px #888888;
+}
