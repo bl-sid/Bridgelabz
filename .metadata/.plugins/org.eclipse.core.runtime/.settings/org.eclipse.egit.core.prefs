@@ -1,5 +1,5 @@
-GitRepositoriesView.GitDirectories=/home/bridgeit/Sid/Bridgelabz/.git\:
-GitRepositoriesView.GitDirectories.relative=/home/bridgeit/Sid/Bridgelabz/.git\:
+GitRepositoriesView.GitDirectories=/home/bridgeit/Sid/Bridgelabz/.git\:/home/bridgeit/.git\:
+GitRepositoriesView.GitDirectories.relative=/home/bridgeit/Sid/Bridgelabz/.git\:/home/bridgeit/.git\:
 RepositorySearchDialogDeepSearch=true
 RepositorySearchDialogSearchPath=/home/bridgeit/Sid/Bridgelabz
 RepositorySearchDialogSkipHidden=false
