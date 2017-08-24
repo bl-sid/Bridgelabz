@@ -2,8 +2,6 @@ package com.bridgelabz.programs;
 
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyQueue;
-
 public class BankingCashCounter {
 
 	static Scanner scanner = new Scanner(System.in);

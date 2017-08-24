@@ -24,7 +24,6 @@ public class Utility {
 		return true;
 	}
 	
-	
 	/**
 	 * @param range- up to which prime numbers are to be found
 	 * @returns string array of prime numbers in  a given range

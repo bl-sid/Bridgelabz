@@ -2,4 +2,7 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:Practice" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:LogIn" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:HitCounter" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Internationalisation" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Annotation" serverId="Tomcat v9.0 Server at localhost"/>
 </modules>

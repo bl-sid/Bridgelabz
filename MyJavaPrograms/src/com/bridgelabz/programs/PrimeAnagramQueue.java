@@ -1,6 +1,5 @@
 package com.bridgelabz.programs;
 
-import com.bridgelabz.utility.MyQueue;
 import com.bridgelabz.utility.Utility;
 
 public class PrimeAnagramQueue {

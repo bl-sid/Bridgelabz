@@ -1,7 +1,5 @@
 package com.bridgelabz.programs;
 
-import com.bridgelabz.utility.MyQueue;
-
 /** Represents a player in cards game **/
 public class Player {
 

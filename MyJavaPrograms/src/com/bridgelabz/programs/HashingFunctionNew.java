@@ -9,8 +9,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyOrderedList;
-
 public class HashingFunctionNew {
 
 	BufferedReader bufferedReader = null;	//	buffered reader to read the file

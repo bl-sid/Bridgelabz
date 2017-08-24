@@ -2,8 +2,6 @@ package com.bridgelabz.programs;
 
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyDeque;
-
 public class PalindromeCheckerDeque {
 
 	public static void main(String[] args) {

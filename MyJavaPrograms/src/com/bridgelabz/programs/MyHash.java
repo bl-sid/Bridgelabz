@@ -1,4 +1,4 @@
-package com.bridgelabz.utility;
+package com.bridgelabz.programs;
 
 public class MyHash<T> {
 

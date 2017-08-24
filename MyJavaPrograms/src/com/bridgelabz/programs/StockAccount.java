@@ -9,9 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyQueue;
-import com.bridgelabz.utility.MyStack;
-
 public class StockAccount {
 
 	String name;	//	name of the stock

@@ -2,8 +2,6 @@ package com.bridgelabz.programs;
 
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyStack;
-
 public class SimpleBalancedParentheses {
 
 	public static void main(String[] args) {

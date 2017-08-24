@@ -1,7 +1,6 @@
 package com.bridgelabz.programs;
 
 
-import com.bridgelabz.utility.MyStack;
 import com.bridgelabz.utility.Utility;
 
 public class PrimeAnagramStack {

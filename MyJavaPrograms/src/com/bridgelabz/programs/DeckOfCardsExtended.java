@@ -2,8 +2,6 @@ package com.bridgelabz.programs;
 
 import java.util.Random;
 
-import com.bridgelabz.utility.MyQueue;
-
 public class DeckOfCardsExtended {
 
 	

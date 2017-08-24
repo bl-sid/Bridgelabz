@@ -1,47 +1,42 @@
-package com.bridgelabz.utility;
+package com.bridgelabz.programs;
 
-public class OrderedList<T extends Comparable<T>>{
+public class MyLinkedList<T>{
 
-	private MyNode<T> head;	//starting node
-	private MyNode<T> current;	//last node
-	private int position;	//position of last node
+	MyNode<T> head;	//starting node
+	MyNode<T> current;	//last node
+	int position;	//position of last node
 
-	public OrderedList(){
+	/**
+	 * initializes linked list and sets head and current to null
+	 * sets position to -1 to shoe an empty list 
+	 */
+	public MyLinkedList(){
 		head = null;
 		current = null;
 		position = -1;
 	}
-	
-	public void add(T data) {
-		MyNode<T> newNode = new MyNode<T>(data);
-		if(head == null) {
-			head = newNode;
+
+	/**
+	 * @param data - data to be added]
+	 * adds element to the list at end of the list
+	 */
+	public void add(T data){
+		MyNode<T> node = new MyNode<T>(data);
+		if(head == null){
+			head = node;
 			current = head;
 		}
-		else if(head.data.compareTo(data) > 0) {
-			newNode.next = head;
-			head = newNode;
-		}
-		else if(current.data.compareTo(data) < 0) {
-			current.next = newNode;
-			current = newNode;
-		}
-		else {
-			MyNode<T> tempPrev = head;
-			MyNode<T> tempCurrent = head.next;
-			
-			while((tempCurrent != current) && (tempCurrent.data.compareTo(data) < 0)) {
-				tempPrev = tempCurrent;
-				tempCurrent = tempCurrent.next;
-				
-			}
-			tempPrev.next = newNode;
-			newNode.next = tempCurrent;
+		else{
+			current.next = node;
+			current = current.next;
 		}
 		position++;
 	}
 	
-	
+	/**
+	 * @param data - data to be removed
+	 * removes given element from the list
+	 */
 	public void remove(T data){
 		MyNode<T> tempCurrent = head;
 		MyNode<T> tempPrev = null;
@@ -61,41 +56,44 @@ public class OrderedList<T extends Comparable<T>>{
 		position--;
 	}
 	
+	/**
+	 * @param data - elements to be searched in the list
+	 * @returns true if the element is in the list else returns false
+	 */
 	public boolean search(T data){
-		if(contains(data) == -1){
-			return false;
-		}
-		return true;
+		return index(data) == -1 ? false : true; 
 	}
 	
-	public int contains(T data){
-		if(position == -1){
-			return -1;
-		}
-		MyNode<T> tempCurrent = head;
-		int tempPosition = 0;
-		while(tempCurrent.data != data){
-			if(tempCurrent == current){
-				return -1;
-			}
-			tempCurrent = tempCurrent.next;
-			tempPosition++;
-		}
-		return tempPosition;
-	}
-	
+	/**
+	 * @returns true if the list is empty else returns false
+	 */
 	public boolean isEmpty(){
 		return position == -1 ? true : false;
 	}
 	
+	
+	/**
+	 * @returns size(number of elements) of the list
+	 */
 	public int size(){
 		return position + 1;
 	}
 	
+	
+	/**
+	 * @param data - data to be added
+	 * adds data to the end of the list
+	 */
 	public void append(T data){
 		add(data);
 	}
 	
+	
+	/**
+	 * @param data - element whose position is to be found out
+	 * @returns position of the element in the list if it is in the list 
+	 * else returns -1
+	 */
 	public int index(T data){
 		if(position == -1){
 			return -1;
@@ -113,6 +111,10 @@ public class OrderedList<T extends Comparable<T>>{
 		return tempPosition;
 	}
 
+	
+	/**
+	 * @param pos , data- inserts element 'data' at 'pos' position
+	 */
 	public void insert(int pos , T data){
 
 		if((pos == position+1) || (position == -1)){
@@ -139,6 +141,10 @@ public class OrderedList<T extends Comparable<T>>{
 		position++;
 	}
 	
+	/**
+	 * @param location - pops elements at given location
+	 * @returns element popped 
+	 */
 	public T pop(int location){
 		MyNode<T> tempCurrent = head;
 		MyNode<T> tempPrev = null;
@@ -164,17 +170,49 @@ public class OrderedList<T extends Comparable<T>>{
 		}
 	}
 	
+	/**
+	 * @return pops and returns last element in the list
+	 */
 	public T pop(){
 		return pop(position);
 	}
 	
 	
+	/**
+	 * @param location
+	 * @returns object of given location
+	 */
+	public T get(int location) {
+		MyNode<T> tempCurrent = head;
+		int tempPosition = 0;
+		
+		while(tempPosition != location){
+			tempCurrent = tempCurrent.next;
+			tempPosition++;
+		}
+		
+		return tempCurrent.data;
+		
+	}
+	/**
+	 * prints all the elements in the list
+	 */
 	public void list(){
 		MyNode<T> tempCurrent = head;
 		while(tempCurrent != null){
 			System.out.println(tempCurrent.data);
 			tempCurrent = tempCurrent.next;
 		}
-	}
+	}	
 }
 
+
+class MyNode<T>{
+	T data;	//data to be stored
+	MyNode<T> next;	//reference to the next node
+	
+	MyNode(T data){
+		this.data = data;
+		next = null;
+	}
+}

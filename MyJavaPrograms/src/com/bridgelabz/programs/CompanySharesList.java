@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyLinkedList;
-
 public class CompanySharesList {
 
 	Scanner scanner = new Scanner(System.in);

@@ -2,8 +2,6 @@ package com.bridgelabz.programs;
 
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyLinkedList;
-
 public class StockReport {
 
 	MyLinkedList<StockPortfolio> list;

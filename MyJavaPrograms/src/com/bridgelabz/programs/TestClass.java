@@ -1,7 +1,5 @@
 package com.bridgelabz.programs;
 
-import com.bridgelabz.utility.MyOrderedList;
-
 public class TestClass {
 
 	public static void main(String[] args) {

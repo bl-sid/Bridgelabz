@@ -8,8 +8,6 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
-import com.bridgelabz.utility.MyHash;
-
 public class HashingFunction {
 	BufferedReader bufferedReader = null;
 	MyHash<Integer> myHash = new MyHash<Integer>();

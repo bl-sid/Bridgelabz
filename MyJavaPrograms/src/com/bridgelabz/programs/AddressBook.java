@@ -2,13 +2,9 @@ package com.bridgelabz.programs;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -17,8 +13,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 public class AddressBook {
 
+	
 	Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
