@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.FileUpload"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.FileItemFactory"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.RequestContext"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.util.Locale"/>
+<fullyQualifiedTypeName name="com.bridgelabz.utility.Utility"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.FileItem"/>
+<fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>
