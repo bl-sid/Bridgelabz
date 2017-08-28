@@ -88,7 +88,7 @@ input[type="submit"] {
 
 		<div class="right">
 			<h2>Using Your Account</h2>
-			<form action="" method="post">
+			<form action="LogInUser" method="post">
 				<input type="email" name="email" placeholder="Enter Your Email ID">
 				<br> <input type="password" name="password"
 					placeholder="Enter Password"> <br> <input

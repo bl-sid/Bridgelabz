@@ -17,45 +17,22 @@
 </style>
 </head>
 <body>
-
-	<%! UserDao dao = null; 
-	boolean increase = false;%>
-	<%
-	String email = request.getParameter("email");
-	String password = request.getParameter("password");
 	
-	Cookie[] cookies = request.getCookies();
-	if(cookies.length != 0){
-		increase = true;
-	}
+	<h2>Welcome <% Cookie[] cookies = request.getCookies();
 	for(Cookie cookie : cookies){
-		if(cookie.getValue() == null || cookie.getValue().isEmpty()){
-			increase = true;
+		if(cookie.getName().equals("email")){
+			out.println(cookie.getValue());
 		}
 	}
+	 %></h2>
 	
-	Cookie cookie = new Cookie("email", email);
-	
-	User user = new User(email, password);
-	
-	dao = new UserDao();
-	
-	dao.registerUser(user);
-	%>
-	
-	<h2>Welcome <%= email %></h2>
-	
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="fileupload.jsp" method="post" enctype="multipart/form-data">
 		<input type="file" name="file" multiple> <br><br>
-		<input type="submit" value="Upload" class="submitid" action="">
+		<input type="submit" value="Upload" class="submitid">
 		
 	<p> Number of people online are: <% 
-		int counter = dao.getCounter();
-		if(increase){
-			counter++;
-			dao.updateCounterInDatabase(counter);
-		} 
-		out.println(counter);
+		UserDao dao = new UserDao();
+		out.println(dao.getCounter());
 	%></p>
 	
 	<input type="submit" value="LogOut" formaction="LogOut" class="submitid">

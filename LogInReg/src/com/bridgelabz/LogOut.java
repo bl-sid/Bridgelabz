@@ -23,6 +23,10 @@ public class LogOut extends HttpServlet {
 			cookie.setValue("");
 			cookie.setMaxAge(0);
 		}
+		UserDao dao = new UserDao();
+		int counter = dao.getCounter();
+		counter--;
+		dao.updateCounterInDatabase(counter);
 		response.sendRedirect("index.jsp");
 	}
 

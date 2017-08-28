@@ -37,7 +37,7 @@ form{
 </head>
 <body>
 
-	<form action="welcome.jsp" method="post">
+	<form action="RegisterUser" method="post">
 	<fieldset>
 	<legend id="titleid">Sign Up</legend>
 		<input type="email" name="email" placeholder="Enter Email ID">

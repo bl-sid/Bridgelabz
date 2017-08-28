@@ -70,4 +70,23 @@ public class UserDao {
 				e.printStackTrace();
 			}			
 	}
+	
+	public boolean checkLogIn(User user){
+		String query = "select * from user where email = ?";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(query);
+			statement.setString(1, user.email);
+			ResultSet resultSet = (ResultSet) statement.executeQuery();
+			resultSet.next();
+			String email = resultSet.getString("email");
+			String password = resultSet.getString("password");
+			if(email.equals(user.email) && password.equals(user.password)){
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return false;
+	}
 }
