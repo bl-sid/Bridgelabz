@@ -19,7 +19,7 @@ body {
 .block {
 	background-color: white;
 	width: 370px;
-	margin: auto;
+	margin:5 auto;
 	padding: 10px;
 	padding-bottom: 1px;
 	margin-top: 5px;
@@ -28,7 +28,6 @@ body {
 .inputs {
 	border-radius: 5px;
 	background-color: #F7F4F3;
-	width: 350px;
 	font-size: 20px;
 }
 
