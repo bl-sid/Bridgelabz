@@ -19,7 +19,7 @@ body {
 .block {
 	background-color: white;
 	width: 370px;
-	margin:5 auto;
+	margin: 5 auto;
 	padding: 10px;
 	padding-bottom: 1px;
 	margin-top: 5px;
@@ -75,8 +75,7 @@ body {
 				<label for="mobno">Contact Number:</label> <input type="tel"
 					class="form-control" id="mobno">
 			</div>
-	Gender: 
-			<label class="radio-inline"> <input type="radio"
+			Gender: <label class="radio-inline"> <input type="radio"
 				name="gender"> Male
 			</label> <label class="radio-inline"> <input type="radio"
 				name="gender"> Female

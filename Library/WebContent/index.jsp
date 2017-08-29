@@ -59,17 +59,24 @@
 	text-align: center;
 }
 
+.wrapper{
+	border:1px solid grey;
+	border-radius: 5px;
+	 display: flex;
+  flex-wrap: wrap;
+}
 </style>
 </head>
 <body>
 
-	<div class="container">
-
-		<h1>Sign In</h1>
+	<div class="container wrapper">
+<div class="row">
+		<h1>Sign In</h1><br>
 		<hr>
+		</div>
 		<div class="row">
 			<div class="col-md-6 first-div">
-			<span class="float-right">
+			<span class="">
 				<h3>Use Other Accounts</h3>
 				<div class="para-right">
 					You can also sign in using your <br>Facebook Account or Google
