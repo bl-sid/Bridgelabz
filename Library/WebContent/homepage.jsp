@@ -61,8 +61,8 @@
 			ArrayList<Book> books = db.getScienceData();
 			for(Book book: books){
 				out.print("Name: " + book.getName());
-				out.print("Price: " + book.getPrice());
-				out.print("Category: " + book.getCategory());
+				out.print("\tPrice: " + book.getPrice());
+				out.print("\tCategory: " + book.getCategory() + "\n");
 			}
 		%>
 	</div>

@@ -21,7 +21,7 @@ public class LibraryDatabase {
 	
 	public ArrayList<Book> getScienceData(){
 		ArrayList<Book> books = new ArrayList<Book>();
-		String query = "selecet * from Science";
+		String query = "select * from books";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
@@ -29,8 +29,11 @@ public class LibraryDatabase {
 				String name = resultSet.getString("name");
 				String category = resultSet.getString("category");
 				int price = resultSet.getInt("price");
-				Book book = new Book(name, category, price);
-				books.add(book);
+				if(category.equals("Science")){
+					Book book = new Book(name, category, price);
+					books.add(book);
+				}
+				
 			}
 			
 		} catch (SQLException e) {
