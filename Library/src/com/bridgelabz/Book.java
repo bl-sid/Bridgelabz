@@ -1,18 +1,24 @@
 package com.bridgelabz;
 
 public class Book {
-	private String name;
+	private String title;
+	private String author;
 	private String category;
 	private int price;
 	
-	Book(String name, String category, int price){
-		this.name = name;
+	Book(String title, String author, String category, int price){
+		this.title = title;
+		this.author = author;
 		this.category = category;
 		this.price = price;
 	}
 	
-	public String getName(){
-		return this.name;
+	public String getTitle(){
+		return this.title;
+	}
+	
+	public String getAuthor(){
+		return this.author;
 	}
 	
 	public String getCategory(){

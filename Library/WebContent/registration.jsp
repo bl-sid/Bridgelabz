@@ -92,7 +92,7 @@ body {
 			</p>
 
 			<input type="button" value="Create An Account"
-				class="inputs btn-background" id="register-button">
+				class="inputs btn-background text-center" id="register-button">
 		</form>
 		<br>
 		<p id="last-line">

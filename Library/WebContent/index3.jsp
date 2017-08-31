@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
-<title>Sign In</title>
+
+<title>Insert title here</title>
 
 <style type="text/css">
 .div-centered {
@@ -43,14 +45,14 @@
 
 	<div class="container">
 
-
 		<div class="row">
-			<div class="col-md-8 div-centered">
-				<h1>Sign In</h1>
-				<hr>
-
+			<div class="col-lg-7 col-md-10 col-sm-12 col-xs-12 div-centered">
+				<div class="page-header">
+					<h1>Sign In</h1>
+					<hr>
+				</div>
 				<div class="row">
-					<div class="col-md-6 div-left">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 div-left">
 						<h3>Use Other Accounts</h3>
 						You can also sign in using your <br>Facebook Account or
 						Google Account<br>
@@ -61,9 +63,9 @@
 						<button type="button" class="btn btn-google">Login with
 							Google</button>
 					</div>
-
-
-					<div class="col-md-6 div-right">
+	
+					
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 div-right">
 						<h3>Using Your Account</h3>
 						<form action="">
 							<div class="form-group">
@@ -85,17 +87,10 @@
 
 
 						<a href="#">Forgot your password?</a>
-
 					</div>
-
-
 				</div>
 			</div>
 		</div>
-
-
-
-
 	</div>
 </body>
 </html>
