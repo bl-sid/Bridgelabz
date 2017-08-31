@@ -4,111 +4,68 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Log In</title>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 
-<style type="text/css">
-.buttons {
-	color: white;
-	font-size: 16px;
-	border-radius: 5px;
-	padding: 10px;
-}
-
-#fb {
-	background-color: #022B7E;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin-top: 10px;
-}
-
-#google {
-	margin-top: 5px;
-	background-color: #131417;
-	padding-left: 30px;
-	padding-right: 27px;
-}
-
-.first-div {
-	border-right: black solid;
-	text-align:center;
-	padding-right: 50px;
-}
+<link rel="stylesheet" type="text/css" href="styles/login.css">
+<title>Log In</title>
 
 
-.myinput{
-	width: 50%;
-}
-
-.mylink{
-	width:50%;
-	text-align:center;
-}
-
-.second-col{
-	padding-left:50px;
-}
-
-
-
-.para-right{
-	text-align: center;
-}
-
-.wrapper{
-	border:1px solid grey;
-	border-radius: 5px;
-	 display: flex;
-  flex-wrap: wrap;
-}
-</style>
 </head>
 <body>
 
-	<div class="container wrapper">
-<div class="row">
-		<h1>Sign In</h1><br>
-		<hr>
-		</div>
+	<div class="container">
+
 		<div class="row">
-			<div class="col-md-6 first-div">
-			<span class="">
-				<h3>Use Other Accounts</h3>
-				<div class="para-right">
-					You can also sign in using your <br>Facebook Account or Google
-				Account<br>
+			<div class="col-lg-7 col-md-10 col-sm-12 col-xs-12 div-centered">
+				<div class="page-header">
+					<h1>Sign In</h1>
+					<hr>
 				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 div-left">
+						<h3>Use Other Accounts</h3>
+						You can also sign in using your <br>Facebook Account or
+						Google Account<br>
 
-				<button id="fb" class="buttons">Login with Facebook</button>
-				<br>
-				<button id="google" class="buttons">Login with Google</button>
-			</span></div>
-			
-			<div class="col-md-6 second-col">
-				<h3>Using Your Account</h3>
-				<form action="">
-				<div class="form-group">
-					<input type="email" name="email" class="form-control myinput" placeholder="Enter Your Email ID">
+						<button type="button" class="btn btn-primary btn-fb">Login
+							with Facebook</button>
+						<br>
+						<button type="button" class="btn btn-google">Login with
+							Google</button>
+					</div>
+	
+					
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 div-right">
+						<h3>Using Your Account</h3>
+						<form action="" method="post">
+							<div class="form-group">
+								<input type="email" name="email" class="form-control myinput"
+									placeholder="Enter Your Email ID" id="email">
+							</div>
+
+							<div class="form-group">
+								<input type="password" name="password"
+									class="form-control myinput" placeholder="Enter Password" id="password">
+							</div>
+
+							<div class="form-group">
+								<input type="submit" value="Sign In"
+									class="btn btn-primary form-control" onClick="return validateLogIn()">
+							</div>
+						</form>
+						<a href="registration.jsp">New user? Create a new account</a>
+						<br>
+						<a href="#">Forgot your password?</a>
+					</div>
 				</div>
-				
-				<div class="form-group">
-					<input type="password" name="password" class="form-control myinput" placeholder="Enter Password">
-				</div>
-				
-				<div class="form-group">
-					<input type="submit" value="Sign In" class="btn btn-primary form-control myinput">
-				</div>
-				</form>
-				
-				
-				<p class="mylink"><a href="#">Forgot your password?</a></p>
 			</div>
-
 		</div>
 	</div>
+	
+	<script type="text/javascript" src="scripts/login.js"></script>
 </body>
 </html>

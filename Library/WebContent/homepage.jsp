@@ -1,3 +1,4 @@
+<%@page import="com.bridgelabz.CreateModal"%>
 <%@page import="com.bridgelabz.Book"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.bridgelabz.LibraryDatabase"%>
@@ -46,7 +47,7 @@
 
 	<div class="container">
 		<button class="btn btn-primary" type="button" data-toggle="modal"
-			data-target="#science-data">Science</button>
+			data-target="#science-data" onClick="onClick(1)">Science</button>
 		<button class="btn">Commerce</button>
 		<button class="btn">Arts</button>
 
@@ -125,9 +126,7 @@
 	</div>
 
 
-<div >
-
-</div>
+	<div></div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -140,5 +139,13 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	var id = 0;
+	function onClick(btnId){
+		id = btnId;
+	}
+</script>
+
 </body>
 </html>
