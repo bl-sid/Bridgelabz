@@ -32,7 +32,7 @@
 	margin-right: 15px;
 }
 
-.container-margin-top{
+.container-margin-top {
 	margin-top: 10px;
 }
 </style>
@@ -41,11 +41,11 @@
 
 	<nav class="navbar navbar-expand-md nav-color">
 	<div class="container-fluid">
-	<div class="navbar-header">
-      <a class="navbar-brand" href="#">Library</a>
-    </div>
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Library</a>
+		</div>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><%= session.getAttribute("email") + "&nbsp;&nbsp;&nbsp;&nbsp;" %></li>
+			<li class="nav-item"><%=session.getAttribute("email") + "&nbsp;&nbsp;&nbsp;&nbsp;"%></li>
 			<li class="nav-item"><a href="#">Logout</a></li>
 		</ul>
 	</div>
@@ -53,30 +53,16 @@
 
 
 	<div class="container container-margin-top">
-		<button class="btn btn-primary" type="button" data-toggle="modal"
-			data-target="#science-data" onClick="onClick(1)">Science</button>
-		<button class="btn">Commerce</button>
-		<button class="btn">Arts</button>
+		<button class="btn btn-primary category" type="button">Science</button>
+		<button class="btn btn-primary category" type="button">Commerce</button>
+		<button class="btn btn-primary category" type="button">Arts</button>
 
-		<div class="modal fade" id="science-data" tabindex="-1">
+
+		<div class="modal fade" id="category-data" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">Science Books</div>
-					<div class="modal-body">
-						<%
-							LibraryDatabase db = new LibraryDatabase();
-							ArrayList<Book> books = db.getScienceData();
-							out.print("<ol>");
-							for (Book book : books) {
-								out.print("<li>");
-								out.print("<a data-toggle='modal' href='#'>" + book.getTitle() + "</a>");
-								out.print("<button type='button' class='close' data-dismiss='modal'>&times;</button>");
-								out.print("<a href='#' class='form-pull-right'>edit</a>");
-								out.print("</li>");
-							}
-							out.print("</ol>");
-						%>
-					</div>
+					<div class="modal-header category-header"></div>
+					<div class="modal-body category-books"></div>
 				</div>
 			</div>
 		</div>
@@ -135,6 +121,10 @@
 
 	<div></div>
 
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
@@ -147,12 +137,38 @@
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-	var id = 0;
-	function onClick(btnId){
-		id = btnId;
-	}
-</script>
+		
+		
+		<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.category').click(function() {
+				var category = this.innerHTML;
+
+				$.ajax({
+					type : "get",
+					url : "CategoryLoader",
+					data : "category=" + category,
+					success : function(data) {
+						$('.category-header').html(category + " Books");
+						$('.category-books').html(data);
+						$('#category-data').modal('toggle');
+					}
+				});
+			});
+		});
+	</script>
 
 </body>
 </html>

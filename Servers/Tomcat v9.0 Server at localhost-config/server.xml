@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="MyFileUpload" path="/MyFileUpload" reloadable="true" source="org.eclipse.jst.jee.server:MyFileUpload"/><Context docBase="LogInReg" path="/LogInReg" reloadable="true" source="org.eclipse.jst.jee.server:LogInReg"/><Context docBase="MyBootstrapProject" path="/MyBootstrapProject" reloadable="true" source="org.eclipse.jst.jee.server:MyBootstrapProject"/><Context docBase="Library" path="/Library" reloadable="true" source="org.eclipse.jst.jee.server:Library"/><Context docBase="Popup" path="/Popup" reloadable="true" source="org.eclipse.jst.jee.server:Popup"/></Host>
+      <Context docBase="MyFileUpload" path="/MyFileUpload" reloadable="true" source="org.eclipse.jst.jee.server:MyFileUpload"/><Context docBase="LogInReg" path="/LogInReg" reloadable="true" source="org.eclipse.jst.jee.server:LogInReg"/><Context docBase="MyBootstrapProject" path="/MyBootstrapProject" reloadable="true" source="org.eclipse.jst.jee.server:MyBootstrapProject"/><Context docBase="Library" path="/Library" reloadable="true" source="org.eclipse.jst.jee.server:Library"/><Context docBase="Popup" path="/Popup" reloadable="true" source="org.eclipse.jst.jee.server:Popup"/><Context docBase="JQueryAjax" path="/JQueryAjax" reloadable="true" source="org.eclipse.jst.jee.server:JQueryAjax"/></Host>
     </Engine>
   </Service>
 </Server>

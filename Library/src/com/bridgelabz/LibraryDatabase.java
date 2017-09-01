@@ -1,4 +1,5 @@
 package com.bridgelabz;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,24 +8,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class LibraryDatabase {
-	
+
 	Connection connection;
-	
+
 	public LibraryDatabase() {
 		connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/library";
-			connection = DriverManager.getConnection(url, "root","root");
+			connection = DriverManager.getConnection(url, "root", "root");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public int addBook(Book book){
+
+	public int addBook(Book book) {
 		String query = "insert into books (title, author, category, price) values (?, ?, ?, ?)";
-		
+
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, book.getTitle());
@@ -38,29 +38,25 @@ public class LibraryDatabase {
 		}
 		return 0;
 	}
-	
-	
-	public ArrayList<Book> getScienceData(){
+
+	public ArrayList<Book> getCategoryData(String category) {
 		ArrayList<Book> books = new ArrayList<Book>();
-		String query = "select * from books";
+		String query = "select * from books where category = ?";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, category);
 			ResultSet resultSet = statement.executeQuery();
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				String title = resultSet.getString("title");
 				String author = resultSet.getString("author");
-				String category = resultSet.getString("category");
 				int price = resultSet.getInt("price");
-				if(category.equals("Science")){
-					Book book = new Book(title, author, category, price);
-					books.add(book);
-				}
-				
+				Book book = new Book(title, author, category, price);
+				books.add(book);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return books;		
+		return books;
 	}
 }
