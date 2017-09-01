@@ -10,7 +10,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
-	
+
 <link rel="stylesheet" type="text/css" href="styles/registration.css">
 
 </head>
@@ -29,27 +29,27 @@
 
 					<div class="form-group">
 						<label for="name">Full Name:</label> <input type="text"
-							class="form-control" id="name">
+							class="form-control" name="name" id="name">
 					</div>
 
 					<div class="form-group">
 						<label for="email">Email address:</label> <input type="email"
-							class="form-control" id="email">
+							class="form-control" name="email" id="email">
 					</div>
 
 					<div class="form-group">
 						<label for="mobno">Contact Number:</label> <input type="tel"
-							class="form-control" id="mobno">
+							class="form-control" name="contact" id="mobno">
 					</div>
 					Gender: <label class="radio-inline"> <input type="radio"
-						name="gender" id="male"> Male
+						id="male" name="gender" value="Male">Male
 					</label> <label class="radio-inline"> <input type="radio"
-						name="gender" id="female"> Female
+						id="female" name="gender" value="Female">Female
 					</label>
 
 					<div class="form-group">
 						<label for="password">New Password:</label> <input type="password"
-							class="form-control" id="password">
+							class="form-control" id="password" name="password">
 					</div>
 					<p id="para">
 						By Clicking on the "Create an account" button below, you certify
@@ -58,7 +58,7 @@
 					</p>
 					<center>
 						<input type="submit" value="Create An Account"
-							class="inputs btn-background text-center" id="register-button" 
+							class="inputs btn-background text-center" id="register-button"
 							onClick="return validateForm()">
 					</center>
 				</form>
@@ -71,7 +71,7 @@
 		</div>
 
 	</div>
-	
+
 	<script type="text/javascript" src="scripts/registration.js"></script>
 </body>
 </html>

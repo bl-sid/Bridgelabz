@@ -41,7 +41,7 @@
 					
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-8 div-right">
 						<h3>Using Your Account</h3>
-						<form action="" method="post">
+						<form action="LogIn" method="post">
 							<div class="form-group">
 								<input type="email" name="email" class="form-control myinput"
 									placeholder="Enter Your Email ID" id="email">

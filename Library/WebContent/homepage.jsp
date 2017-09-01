@@ -31,21 +31,28 @@
 	float: right;
 	margin-right: 15px;
 }
+
+.container-margin-top{
+	margin-top: 10px;
+}
 </style>
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-md nav-color">
 	<div class="container-fluid">
+	<div class="navbar-header">
+      <a class="navbar-brand" href="#">Library</a>
+    </div>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">Username</li>
+			<li class="nav-item"><%= session.getAttribute("email") + "&nbsp;&nbsp;&nbsp;&nbsp;" %></li>
 			<li class="nav-item"><a href="#">Logout</a></li>
 		</ul>
 	</div>
 	</nav>
 
 
-	<div class="container">
+	<div class="container container-margin-top">
 		<button class="btn btn-primary" type="button" data-toggle="modal"
 			data-target="#science-data" onClick="onClick(1)">Science</button>
 		<button class="btn">Commerce</button>
