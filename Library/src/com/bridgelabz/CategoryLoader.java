@@ -26,13 +26,13 @@ public class CategoryLoader extends HttpServlet {
 		builder.append("<ol>");
 		for (Book book : books) {
 			builder.append("<li>");
-			builder.append("<a data-toggle='modal' href='#'>" + book.getTitle() + "</a>");
+			builder.append("<a class='book-title' data-toggle='modal' href='#'>" + book.getTitle() + "</a>");
 			builder.append("<button type='button' class='close' data-dismiss='modal'>&times;</button>");
 			builder.append("<a href='#' class='form-pull-right'>edit</a>");
 			builder.append("</li>");
 		}
 		builder.append("</ol>");
-		out.println(builder.toString());
+		out.println(books);
 	}
 
 	

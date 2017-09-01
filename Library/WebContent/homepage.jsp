@@ -161,11 +161,20 @@
 					url : "CategoryLoader",
 					data : "category=" + category,
 					success : function(data) {
+						var values = [];
+						values = data;
+						$.each( values, function( key, value ) {
+							  alert( key + ": " + value );
+							});
 						$('.category-header').html(category + " Books");
 						$('.category-books').html(data);
 						$('#category-data').modal('toggle');
 					}
 				});
+			});
+			
+			$('.book-title').click(function(){
+				alert("Clicked");
 			});
 		});
 	</script>
