@@ -12,22 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddNewBook")
 public class AddNewBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String category = request.getParameter("category");
 		int price = Integer.parseInt(request.getParameter("price"));
-		
+		String oldTitle = request.getParameter("oldTitle");
+
 		Book book = new Book(title, author, category, price);
 		LibraryDatabase database = new LibraryDatabase();
-		database.addBook(book);
-		response.sendRedirect("homepage.jsp");
+		if (oldTitle.equals("")) {
+			database.addNewBook(book);
+		} else {
+			database.updateBook(book, oldTitle);
+		}
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -78,7 +78,7 @@
 	<div class="modal fade" id="add-data" tabindex="-1">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="AddNewBook">
+				<form action="">
 					<div class="modal-header add-header">
 						<h4 class="modal-title">Add Book</h4>
 					</div>
@@ -156,6 +156,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var titleName = "";
 			$('.category').click(function() {
 				var category = this.innerHTML;
 
@@ -182,8 +183,24 @@
 				$('#author').val("");
 				$('#categoryid').val("Category");
 				$('#price').val("");
+				titleName = "";
 			});
 			
+			$('#btn-save').click(function(){
+				$.ajax({
+					type : "get",
+					url : "AddNewBook",
+					data : "title=" + $('#title').val() + 
+						"&author=" +  $('#author').val() + 
+						"&category=" +  $('#categoryid').val() + 
+						"&price=" + $('#price').val() +
+						"&oldTitle=" + titleName,
+					success : function(data) {
+						$('#add-data').modal('hide');
+						titleName = "";
+					}
+				});
+			});
 			
 			function refreshClickEvent() {
 
@@ -216,6 +233,7 @@
 						dataType : "json",
 						data : "title=" + bookname,
 						success : function(data) {
+							titleName = data.title;
 							$('.add-header').html("Edit Book");
 							$('#title').val(data.title);
 							$('#author').val(data.author);
@@ -223,6 +241,22 @@
 							$('#price').val(data.price);
 							$('#category-data').modal('hide');
 							$('#add-data').modal('show'); 
+						}
+					});
+				});
+				
+				
+				$("body .book-delete").off();
+
+				$("body .book-delete").on("click", function() {
+					var bookname = $(this).attr('class');
+					bookname = bookname.replace("close book-delete ", "");
+					$.ajax({
+						type : "get",
+						url : "DeleteBook",
+						data : "title=" + bookname,
+						success : function(data) {
+							$('#category-data').modal('hide');
 						}
 					});
 				});

@@ -22,7 +22,8 @@ public class LibraryDatabase {
 		}
 	}
 
-	public int addBook(Book book) {
+	
+	public int addNewBook(Book book) {
 		String query = "insert into books (title, author, category, price) values (?, ?, ?, ?)";
 
 		try {
@@ -37,6 +38,32 @@ public class LibraryDatabase {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public void updateBook(Book book, String oldTitle){
+		String query = "update books set title = ?, author = ?, category = ?, price = ? where title = ?";
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, book.getTitle());
+			statement.setString(2, book.getAuthor());
+			statement.setString(3, book.getCategory());
+			statement.setInt(4, book.getPrice());
+			statement.setString(5, oldTitle);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteBook(String title){
+		String query = "delete from books where title = ?";
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, title);
+			statement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<String> getCategoryData(String category) {

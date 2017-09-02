@@ -27,7 +27,7 @@ public class BookTitleLoader extends HttpServlet {
 		for (String title : bookTitles) {
 			builder.append("<li>");
 			builder.append("<a class='book-title' data-toggle='modal' href='#'>" + title + "</a>");
-			builder.append("<button type='button' class='close' data-dismiss='modal'>&times;</button>");
+			builder.append("<button type='button' class='close book-delete " + title + "' data-dismiss='modal'>&times;</button>");
 			builder.append("<a href='#' class='form-pull-right book-edit " + title + "'>edit</a>");
 			builder.append("</li>");
 		}
