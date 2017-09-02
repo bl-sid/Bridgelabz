@@ -1,4 +1,3 @@
-<%@page import="com.bridgelabz.CreateModal"%>
 <%@page import="com.bridgelabz.Book"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.bridgelabz.LibraryDatabase"%>
@@ -35,6 +34,7 @@
 .container-margin-top {
 	margin-top: 10px;
 }
+
 </style>
 </head>
 <body>
@@ -58,11 +58,14 @@
 		<button class="btn btn-primary category" type="button">Arts</button>
 
 
-		<div class="modal fade" id="category-data" tabindex="-1">
+		<div class="modal" id="category-data" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header category-header"></div>
 					<div class="modal-body category-books"></div>
+					<div class="modal-footer">
+					<button class="btn btn-primary btn-sm" id="btn-close">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -76,25 +79,25 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form action="AddNewBook">
-					<div class="modal-header">
+					<div class="modal-header add-header">
 						<h4 class="modal-title">Add Book</h4>
 					</div>
 
 					<div class="modal-body">
 						<div class="form-group">
 							<input type="text" class="form-control" name="title"
-								placeholder="Book Title">
+								placeholder="Book Title" value="" id="title">
 						</div>
 
 						<div class="form-group">
 							<input type="text" class="form-control" name="author"
-								placeholder="Author">
+								placeholder="Author" value="" id="author">
 						</div>
 
 						<div class="form-group">
 
-							<select name="category" class="form-control">
-								<option selected disabled>Category</option>
+							<select name="category" id="categoryid" class="form-control">
+								<option selected disabled value="Category">Category</option>
 								<option value="Science">Science</option>
 								<option value="Commerce">Commerce</option>
 								<option value="Arts">Arts</option>
@@ -104,14 +107,14 @@
 
 						<div class="form-group">
 							<input type="number" class="form-control" name="price"
-								placeholder="Price">
+								placeholder="Price" value="" id="price">
 						</div>
 					</div>
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary btn-sm"
 							data-dismiss="modal">Cancel</button>
-						<input type="submit" class="btn btn-primary btn-sm" value="Save">
+						<input type="submit" class="btn btn-primary btn-sm" value="Save" id="btn-save">
 					</div>
 				</form>
 			</div>
@@ -137,9 +140,9 @@
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
 
-		
-		
-		<script
+
+
+	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<script
@@ -158,24 +161,72 @@
 
 				$.ajax({
 					type : "get",
-					url : "CategoryLoader",
+					url : "BookTitleLoader",
 					data : "category=" + category,
 					success : function(data) {
-						var values = [];
-						values = data;
-						$.each( values, function( key, value ) {
-							  alert( key + ": " + value );
-							});
 						$('.category-header').html(category + " Books");
 						$('.category-books').html(data);
-						$('#category-data').modal('toggle');
+						$('#category-data').modal('show');
+						refreshClickEvent();
 					}
 				});
 			});
-			
-			$('.book-title').click(function(){
-				alert("Clicked");
+
+			$('#btn-close').click(function(){
+				$('#category-data').modal('hide');
 			});
+			
+			$('#btn-add').click(function(){
+				$('.add-header').html("Add Book");
+				$('#title').val("");
+				$('#author').val("");
+				$('#categoryid').val("Category");
+				$('#price').val("");
+			});
+			
+			
+			function refreshClickEvent() {
+
+				$("body .book-title").off();
+
+				$("body .book-title").on("click", function() {
+					var bookname = $(this).text();
+
+					$.ajax({
+						type : "get",
+						url : "BookDetailsLoader",
+						data : "title=" + bookname,
+						success : function(data) {
+							$('.category-header').html(bookname);
+							$('.category-books').html(data);
+							$('#category-data').modal('show');
+						}
+					});
+				});
+				
+				
+				$("body .book-edit").off();
+
+				$("body .book-edit").on("click", function() {
+					var bookname = $(this).attr('class');
+					bookname = bookname.replace("form-pull-right book-edit ", "");
+					$.ajax({
+						type : "get",
+						url : "EditBook",
+						dataType : "json",
+						data : "title=" + bookname,
+						success : function(data) {
+							$('.add-header').html("Edit Book");
+							$('#title').val(data.title);
+							$('#author').val(data.author);
+							$('#categoryid').val(data.category);
+							$('#price').val(data.price);
+							$('#category-data').modal('hide');
+							$('#add-data').modal('show'); 
+						}
+					});
+				});
+			}
 		});
 	</script>
 

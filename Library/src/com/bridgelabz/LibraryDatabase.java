@@ -39,24 +39,40 @@ public class LibraryDatabase {
 		return 0;
 	}
 
-	public ArrayList<Book> getCategoryData(String category) {
-		ArrayList<Book> books = new ArrayList<Book>();
-		String query = "select * from books where category = ?";
+	public ArrayList<String> getCategoryData(String category) {
+		ArrayList<String> bookTitles = new ArrayList<String>();
+		String query = "select title from books where category = ?";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, category);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				String title = resultSet.getString("title");
-				String author = resultSet.getString("author");
-				int price = resultSet.getInt("price");
-				Book book = new Book(title, author, category, price);
-				books.add(book);
+				bookTitles.add(title);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return books;
+		return bookTitles;
+	}
+	
+	public Book getBookDetails(String title){
+		Book book = null;
+		String query = "select * from books where title = ?";
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, title);
+			ResultSet resultSet = statement.executeQuery();
+			resultSet.next();
+			String author = resultSet.getString("author");
+			String category = resultSet.getString("category");
+			int price = resultSet.getInt("price");
+			
+			book = new Book(title, author, category, price);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return book;
 	}
 }

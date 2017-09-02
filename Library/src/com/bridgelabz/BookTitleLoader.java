@@ -11,28 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/CategoryLoader")
-public class CategoryLoader extends HttpServlet {
+@WebServlet("/BookTitleLoader")
+public class BookTitleLoader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Category Loader called");
+		System.out.println("Book Titles Loader called");
 		String category = request.getParameter("category");
 		StringBuilder builder = new StringBuilder();
 		LibraryDatabase database = new LibraryDatabase();
 		PrintWriter out = response.getWriter();
-		ArrayList<Book> books = database.getCategoryData(category);
+		ArrayList<String> bookTitles = database.getCategoryData(category);
 		builder.append("<ol>");
-		for (Book book : books) {
+		for (String title : bookTitles) {
 			builder.append("<li>");
-			builder.append("<a class='book-title' data-toggle='modal' href='#'>" + book.getTitle() + "</a>");
+			builder.append("<a class='book-title' data-toggle='modal' href='#'>" + title + "</a>");
 			builder.append("<button type='button' class='close' data-dismiss='modal'>&times;</button>");
-			builder.append("<a href='#' class='form-pull-right'>edit</a>");
+			builder.append("<a href='#' class='form-pull-right book-edit " + title + "'>edit</a>");
 			builder.append("</li>");
 		}
 		builder.append("</ol>");
-		out.println(books);
+		out.println(builder.toString());
 	}
 
 	
