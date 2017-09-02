@@ -12,10 +12,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
 <title>Home</title>
 
 <style type="text/css">
+
 .nav-color {
 	background-color: #C7CAD5;
 }
@@ -39,6 +42,12 @@
 </head>
 <body>
 
+<% String email = (String)session.getAttribute("email"); 
+if(email == null || email.equals("")){
+	response.sendRedirect("index.jsp");
+}
+%>
+
 	<nav class="navbar navbar-expand-md nav-color">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -46,7 +55,7 @@
 		</div>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item"><%=session.getAttribute("email") + "&nbsp;&nbsp;&nbsp;&nbsp;"%></li>
-			<li class="nav-item"><a href="#">Logout</a></li>
+			<li class="nav-item" id="btn-logout"><a href="#">Logout</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -72,8 +81,8 @@
 	</div>
 
 
-	<button type="button" class="btn btn-primary" id="btn-add"
-		data-toggle="modal" data-target="#add-data">&#43;</button>
+	<button type="button" class="btn btn-primary btn-lg" id="btn-add"
+		data-toggle="modal" data-target="#add-data"> <i class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
 
 	<div class="modal fade" id="add-data" tabindex="-1">
 		<div class="modal-dialog">
@@ -188,7 +197,7 @@
 			
 			$('#btn-save').click(function(){
 				$.ajax({
-					type : "get",
+					type : "post",
 					url : "AddNewBook",
 					data : "title=" + $('#title').val() + 
 						"&author=" +  $('#author').val() + 
@@ -198,6 +207,16 @@
 					success : function(data) {
 						$('#add-data').modal('hide');
 						titleName = "";
+					}
+				});
+			});
+			
+			$('#btn-logout').click(function(){
+				$.ajax({
+					type : "post",
+					url : "LogOut",
+					success : function(data){
+						window.location = data;
 					}
 				});
 			});
