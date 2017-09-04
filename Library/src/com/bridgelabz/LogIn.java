@@ -1,6 +1,9 @@
 package com.bridgelabz;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +20,12 @@ public class LogIn extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		
+		Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(email);
+        if(!matcher.find() || (password.length() < 8)){
+        	response.sendRedirect("index.jsp");
+        }
 		UserDao dao = new UserDao();
 		boolean loggedIn = dao.logInCheck(email, password);
 
@@ -33,5 +42,4 @@ public class LogIn extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

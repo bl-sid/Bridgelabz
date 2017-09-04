@@ -18,6 +18,13 @@
 <body>
 
 	<div class="container">
+	
+	<% 
+	String email = (String)session.getAttribute("email"); 
+	if(email != null && !email.equals("")){
+		response.sendRedirect("homepage.jsp");
+	}
+	%>
 
 		<div class="row">
 			<div class="col-lg-7 col-md-10 col-sm-12 col-xs-12 div-centered">

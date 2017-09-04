@@ -1,18 +1,8 @@
 
 function validateLogIn(){
 	var email = document.getElementById("email").value;
-	if(email.indexOf("@") < 2){
-		alert("Invalid email address");
-		return false;
-	}
-	if((email.indexOf(".") - email.indexOf("@")) < 2){
-		alert("Invalid email address");
-		return false;
-	}
-	if((email.length - email.indexOf(".")) < 2){
-		alert("Invalid email address");
-		return false;
-	}
+	var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regEx.test(email);
 	
 	var password = document.getElementById("password").value;
 	if(password.length < 8){
