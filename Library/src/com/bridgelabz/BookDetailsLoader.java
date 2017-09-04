@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class BookDetailsLoader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Book Details Loader called");
 		String title = request.getParameter("title");

@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+// POJO class for user database
+
 public class User {
 
 	private String name;

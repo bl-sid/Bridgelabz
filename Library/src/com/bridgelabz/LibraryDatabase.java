@@ -7,10 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+//DAO class
 public class LibraryDatabase {
 
-	Connection connection;
+	Connection connection;	// connection
 
+	/**
+	 * Loads jdbc driver class and gets connection
+	 */
 	public LibraryDatabase() {
 		connection = null;
 		try {
@@ -23,6 +27,11 @@ public class LibraryDatabase {
 	}
 
 	
+	/**
+	 * Adds a new book to the database
+	 * @param book - reference of the book object to be added
+	 * @return	status of the result
+	 */
 	public int addNewBook(Book book) {
 		String query = "insert into books (title, author, category, price) values (?, ?, ?, ?)";
 
@@ -40,6 +49,11 @@ public class LibraryDatabase {
 		return 0;
 	}
 	
+	/**
+	 * updates a book's info
+	 * @param book - reference of the book object to be updated
+	 * @param oldTitle - old title of the book
+	 */
 	public void updateBook(Book book, String oldTitle){
 		String query = "update books set title = ?, author = ?, category = ?, price = ? where title = ?";
 		try {
@@ -55,6 +69,10 @@ public class LibraryDatabase {
 		}
 	}
 	
+	/**
+	 * Deletes a book
+	 * @param title title of the book to be deleted
+	 */
 	public void deleteBook(String title){
 		String query = "delete from books where title = ?";
 		try {
@@ -66,6 +84,10 @@ public class LibraryDatabase {
 		}
 	}
 
+	/**
+	 * @param category - category of which books are to be loaded
+	 * @return arraylist of book titles
+	 */
 	public ArrayList<String> getCategoryData(String category) {
 		ArrayList<String> bookTitles = new ArrayList<String>();
 		String query = "select title from books where category = ?";
@@ -84,6 +106,10 @@ public class LibraryDatabase {
 		return bookTitles;
 	}
 	
+	/**
+	 * @param title - title of the book
+	 * @return book object
+	 */
 	public Book getBookDetails(String title){
 		Book book = null;
 		String query = "select * from books where title = ?";

@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+// Plain Old Java Object class with getters
 public class Book {
 	private String title;
 	private String author;

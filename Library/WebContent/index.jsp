@@ -5,27 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<!-- Bootstrap css link -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 
+<!-- Custom css link -->
 <link rel="stylesheet" type="text/css" href="styles/login.css">
-<title>Log In</title>
 
+<title>Log In</title>
 
 </head>
 <body>
 
-	<div class="container">
-	
 	<% 
+	// Redirects to homepage if already logged in
 	String email = (String)session.getAttribute("email"); 
 	if(email != null && !email.equals("")){
 		response.sendRedirect("homepage.jsp");
 	}
 	%>
 
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-7 col-md-10 col-sm-12 col-xs-12 div-centered">
 				<div class="page-header">
@@ -73,6 +75,7 @@
 		</div>
 	</div>
 	
+	<!-- Custom javascript link -->
 	<script type="text/javascript" src="scripts/login.js"></script>
 </body>
 </html>

@@ -9,24 +9,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 @WebServlet("/AddNewBook")
 public class AddNewBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		final Logger log = Logger.getLogger(AddNewBook.class);
+		BasicConfigurator.configure();
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String category = request.getParameter("category");
 		int price = Integer.parseInt(request.getParameter("price"));
+		//to know old title to edit database if the title is changed after editing book info
 		String oldTitle = request.getParameter("oldTitle");
 
 		Book book = new Book(title, author, category, price);
 		LibraryDatabase database = new LibraryDatabase();
 		if (oldTitle.equals("")) {
 			database.addNewBook(book);
+			log.debug("New book");
 		} else {
 			database.updateBook(book, oldTitle);
+			log.debug("Updated book");
 		}
 	}
 
