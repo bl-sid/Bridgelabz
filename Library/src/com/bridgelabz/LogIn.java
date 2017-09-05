@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 @WebServlet("/LogIn")
 public class LogIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,7 @@ public class LogIn extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		final Logger log = Logger.getRootLogger();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
@@ -25,6 +28,7 @@ public class LogIn extends HttpServlet {
 		Matcher matcher = pattern.matcher(email);
         if(!matcher.find() || (password.length() < 8)){
         	response.sendRedirect("index.jsp");
+        	log.error("Email or password could not be validated");
         }
 		UserDao dao = new UserDao();
 		boolean loggedIn = dao.logInCheck(email, password);

@@ -7,15 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 //DAO class
 public class LibraryDatabase {
 
 	Connection connection;	// connection
+	final Logger log;
 
 	/**
 	 * Loads jdbc driver class and gets connection
 	 */
 	public LibraryDatabase() {
+		log = Logger.getRootLogger();
 		connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -32,21 +36,20 @@ public class LibraryDatabase {
 	 * @param book - reference of the book object to be added
 	 * @return	status of the result
 	 */
-	public int addNewBook(Book book) {
+	public void addNewBook(Book book) {
 		String query = "insert into books (title, author, category, price) values (?, ?, ?, ?)";
-
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, book.getTitle());
 			statement.setString(2, book.getAuthor());
 			statement.setString(3, book.getCategory());
 			statement.setInt(4, book.getPrice());
-			int status = statement.executeUpdate();
-			return status;
+			statement.executeUpdate();
+			log.debug("New book added");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.error("Book could not be added");
 		}
-		return 0;
 	}
 	
 	/**
@@ -64,8 +67,10 @@ public class LibraryDatabase {
 			statement.setInt(4, book.getPrice());
 			statement.setString(5, oldTitle);
 			statement.executeUpdate();
+			log.debug("Book updated");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.debug("Book could not be updated");
 		}
 	}
 	
@@ -79,8 +84,10 @@ public class LibraryDatabase {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, title);
 			statement.execute();
+			log.debug("Book deleted successfully");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.error("Book could not be deleted");
 		}
 	}
 
@@ -99,9 +106,10 @@ public class LibraryDatabase {
 				String title = resultSet.getString("title");
 				bookTitles.add(title);
 			}
-
+		log.debug("Books added to the list");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.error("Books could not be added to the list");
 		}
 		return bookTitles;
 	}
@@ -123,8 +131,10 @@ public class LibraryDatabase {
 			int price = resultSet.getInt("price");
 			
 			book = new Book(title, author, category, price);
+			log.debug("Book details retrieved from database");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.error("Error retrieving book information");
 		}
 		return book;
 	}

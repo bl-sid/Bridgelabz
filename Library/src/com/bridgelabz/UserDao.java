@@ -6,14 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 public class UserDao {
 
 	Connection connection; // Connection
-
+	final Logger log;
+	
 	/**
 	 * Loads jdbc driver class and gets connection
 	 */
 	public UserDao() {
+		 log = Logger.getRootLogger();
 		connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -40,9 +44,11 @@ public class UserDao {
 			statement.setString(5, user.getPassword());
 
 			int status = statement.executeUpdate();
+			log.debug("User registered successfully");
 			return status;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.debug("User registration failed");
 		}
 		return 0;
 	}
@@ -61,10 +67,12 @@ public class UserDao {
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 			if (password.equals(resultSet.getString("password"))) {
+				log.debug("User successfully logged in");
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			log.error("Log in failed. Email or password is wrong");
 		}
 		return false;
 	}

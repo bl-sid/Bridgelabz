@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class LogOut
  */
@@ -18,9 +20,11 @@ public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		final Logger log = Logger.getRootLogger();
 		HttpSession session = request.getSession();
 		session.removeAttribute("email");
 		session.invalidate();
+		log.debug("Successfully logged out");
 		PrintWriter out = response.getWriter();
 		out.print("index.jsp");
 	}

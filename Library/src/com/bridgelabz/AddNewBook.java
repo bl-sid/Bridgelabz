@@ -19,8 +19,6 @@ public class AddNewBook extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		final Logger log = Logger.getLogger(AddNewBook.class);
-		BasicConfigurator.configure();
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String category = request.getParameter("category");
@@ -31,11 +29,9 @@ public class AddNewBook extends HttpServlet {
 		Book book = new Book(title, author, category, price);
 		LibraryDatabase database = new LibraryDatabase();
 		if (oldTitle.equals("")) {
-			database.addNewBook(book);
-			log.debug("New book");
+			database.addNewBook(book);			
 		} else {
 			database.updateBook(book, oldTitle);
-			log.debug("Updated book");
 		}
 	}
 
