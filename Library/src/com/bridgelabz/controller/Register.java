@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.controller;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+
+import com.bridgelabz.dao.UserDao;
+import com.bridgelabz.model.User;
 
 /**
  * Servlet implementation class Register

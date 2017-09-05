@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bridgelabz.dao.LibraryDatabase;
 
 
 @WebServlet("/BookTitleLoader")
@@ -27,7 +29,7 @@ public class BookTitleLoader extends HttpServlet {
 		for (String title : bookTitles) {
 			builder.append("<li>");
 			builder.append("<a class='book-title' data-toggle='modal' href='#'>" + title + "</a>");
-			builder.append("<button type='button' class='close book-delete " + title + "' data-dismiss='modal'>&times;</button>");
+			builder.append("<button type='button' class='close book-delete " + title + "'>&times;</button>");
 			builder.append("<a href='#' class='form-pull-right book-edit " + title + "'>edit</a>");
 			builder.append("</li>");
 		}

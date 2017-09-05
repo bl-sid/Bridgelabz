@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
+
+import com.bridgelabz.model.User;
 
 public class UserDao {
 
@@ -35,8 +37,9 @@ public class UserDao {
 	 */
 	public int addUser(User user) {
 		String query = "insert into user (name, email, contact, gender, password) values (?, ?, ?, ?, ?)";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, user.getName());
 			statement.setString(2, user.getEmail());
 			statement.setString(3, user.getContact());
@@ -50,6 +53,14 @@ public class UserDao {
 			e.printStackTrace();
 			log.debug("User registration failed");
 		}
+		finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return 0;
 	}
 
@@ -61,8 +72,9 @@ public class UserDao {
 	 */
 	public boolean logInCheck(String email, String password) {
 		String query = "select password from user where email = ?";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, email);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
@@ -73,6 +85,14 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Log in failed. Email or password is wrong");
+		}
+		finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}

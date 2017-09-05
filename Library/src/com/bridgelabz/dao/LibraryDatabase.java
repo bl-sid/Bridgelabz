@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
+
+import com.bridgelabz.model.Book;
 
 //DAO class
 public class LibraryDatabase {
@@ -38,8 +40,9 @@ public class LibraryDatabase {
 	 */
 	public void addNewBook(Book book) {
 		String query = "insert into books (title, author, category, price) values (?, ?, ?, ?)";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, book.getTitle());
 			statement.setString(2, book.getAuthor());
 			statement.setString(3, book.getCategory());
@@ -50,6 +53,14 @@ public class LibraryDatabase {
 			e.printStackTrace();
 			log.error("Book could not be added");
 		}
+		finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**
@@ -59,8 +70,9 @@ public class LibraryDatabase {
 	 */
 	public void updateBook(Book book, String oldTitle){
 		String query = "update books set title = ?, author = ?, category = ?, price = ? where title = ?";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, book.getTitle());
 			statement.setString(2, book.getAuthor());
 			statement.setString(3, book.getCategory());
@@ -72,6 +84,14 @@ public class LibraryDatabase {
 			e.printStackTrace();
 			log.debug("Book could not be updated");
 		}
+		finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/**
@@ -80,14 +100,23 @@ public class LibraryDatabase {
 	 */
 	public void deleteBook(String title){
 		String query = "delete from books where title = ?";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, title);
 			statement.execute();
 			log.debug("Book deleted successfully");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Book could not be deleted");
+		}
+		finally{
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -98,18 +127,27 @@ public class LibraryDatabase {
 	public ArrayList<String> getCategoryData(String category) {
 		ArrayList<String> bookTitles = new ArrayList<String>();
 		String query = "select title from books where category = ?";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, category);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				String title = resultSet.getString("title");
 				bookTitles.add(title);
 			}
-		log.debug("Books added to the list");
+			log.debug("Books added to the list");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			log.error("Books could not be added to the list");
+		}
+		finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return bookTitles;
 	}
@@ -121,8 +159,9 @@ public class LibraryDatabase {
 	public Book getBookDetails(String title){
 		Book book = null;
 		String query = "select * from books where title = ?";
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement statement = connection.prepareStatement(query);
+			statement = connection.prepareStatement(query);
 			statement.setString(1, title);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
@@ -136,6 +175,15 @@ public class LibraryDatabase {
 			e.printStackTrace();
 			log.error("Error retrieving book information");
 		}
+		finally {
+			try {
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return book;
 	}
+	
 }

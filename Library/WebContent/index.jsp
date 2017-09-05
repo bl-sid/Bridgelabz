@@ -16,10 +16,15 @@
 
 <title>Log In</title>
 
+<!-- Custom javascript link -->
+<script type="text/javascript" src="scripts/login.js"></script>
+
 </head>
 <body>
 
 	<% 
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
 	// Redirects to homepage if already logged in
 	String email = (String)session.getAttribute("email"); 
 	if(email != null && !email.equals("")){
@@ -75,7 +80,6 @@
 		</div>
 	</div>
 	
-	<!-- Custom javascript link -->
-	<script type="text/javascript" src="scripts/login.js"></script>
+
 </body>
 </html>

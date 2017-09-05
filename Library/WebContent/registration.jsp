@@ -15,6 +15,9 @@
 <!-- Custom css file link -->
 <link rel="stylesheet" type="text/css" href="styles/registration.css">
 
+<!-- Custom javascript link -->
+<script type="text/javascript" src="scripts/registration.js"></script>
+
 </head>
 <body>
 
@@ -73,8 +76,5 @@
 		</div>
 
 	</div>
-
-	<!-- Custom javascript link -->
-	<script type="text/javascript" src="scripts/registration.js"></script>
 </body>
 </html>

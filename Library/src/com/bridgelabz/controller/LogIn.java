@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.controller;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+
+import com.bridgelabz.dao.UserDao;
 
 @WebServlet("/LogIn")
 public class LogIn extends HttpServlet {

@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.model;
 
 // POJO class for user database
 
@@ -18,23 +18,23 @@ public class User {
 		this.password = password;
 	}
 	
-	String getName(){
+	public String getName(){
 		return name;
 	}
 	
-	String getEmail(){
+	public String getEmail(){
 		return email;
 	}
 	
-	String getContact(){
+	public String getContact(){
 		return contact;
 	}
 	
-	String getGender(){
+	public String getGender(){
 		return gender;
 	}
 	
-	String getPassword(){
+	public String getPassword(){
 		return password;
 	}
 }

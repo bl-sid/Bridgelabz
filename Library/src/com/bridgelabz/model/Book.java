@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.model;
 
 // Plain Old Java Object class with getters
 public class Book {
@@ -7,7 +7,7 @@ public class Book {
 	private String category;
 	private int price;
 	
-	Book(String title, String author, String category, int price){
+	public Book(String title, String author, String category, int price){
 		this.title = title;
 		this.author = author;
 		this.category = category;
