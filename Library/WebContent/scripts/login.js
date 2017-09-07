@@ -2,7 +2,10 @@
 function validateLogIn(){
 	var email = document.getElementById("email").value;
 	var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regEx.test(email);
+    if(!regEx.test(email)){
+    	alert("Incorrect Email Id")
+    	return false;
+    }
 	
 	var password = document.getElementById("password").value;
 	if(password.length < 8){

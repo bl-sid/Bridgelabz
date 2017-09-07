@@ -96,10 +96,10 @@
 			<div class="row row-margin">
 				<button class="btn btn-primary category btn-block" type="button">Arts</button>
 			</div>
-
-			<button type="button" class="btn btn-primary float-right"
-				id="btn-add" data-target="#add-data"><span class="btn btn-default btn-sm fa fa-plus"></span></button>
-
+            <div class="row row-margin">
+			 <button type="button" class="btn btn-primary btn-block"
+				    id="btn-add" data-target="#add-data"><span class="btn btn-default btn-sm fa fa-plus"></span></button>
+            </div>
 
 		</div>
 
@@ -165,9 +165,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	
+	</div>	
 
 </body>
 </html>

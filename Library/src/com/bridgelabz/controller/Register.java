@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -46,7 +47,7 @@ public class Register extends HttpServlet {
 				log.error("Contact number is not 10 digits");
 			} else if(!gender.equals("Male") && !gender.equals("Female")){
 				response.sendRedirect("registration.jsp");
-				log.error("NO gender selected");
+				log.error("No gender selected");
 			} else if(password.length() < 8){
 				log.error("Password is too short");
 				response.sendRedirect("registration.jsp");
@@ -54,7 +55,14 @@ public class Register extends HttpServlet {
 				User user = new User(name, email, contact, gender, password, 0);
 				
 				UserDao dao = new UserDao();
-				dao.addUser(user);
+				dao.addUser(user);	
+				dao = new UserDao();
+				user = dao.logInCheck(email, password);
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("email", email);
+				session.setAttribute("id", String.valueOf(user.getId()));
+				session.setAttribute("name", user.getName());
 				
 				response.sendRedirect("homepage.jsp");
 			}

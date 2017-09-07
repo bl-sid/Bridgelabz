@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,7 @@ public class BookTitleLoader extends HttpServlet {
 		LibraryDatabase database = new LibraryDatabase();
 		PrintWriter out = response.getWriter();
 		ArrayList<String> bookTitles = database.getCategoryData(category,id);
-		builder.append("<ol>");
+		/*builder.append("<ol>");
 		for (String title : bookTitles) {
 			builder.append("<li>");
 			builder.append("<a class='book-title' data-toggle='modal' href='#'>" + title + "</a>");
@@ -35,7 +36,10 @@ public class BookTitleLoader extends HttpServlet {
 			builder.append("</li>");
 		}
 		builder.append("</ol>");
-		out.println(builder.toString());
+		out.println(builder.toString());*/
+		request.setAttribute("books_titles_list", bookTitles);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("booktitles.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	

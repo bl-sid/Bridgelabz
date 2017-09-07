@@ -6,10 +6,13 @@ function validateForm(){
 		alert("Name is too short");
 		return false;
 	}
-	
+	console.log("before email");
 	var email = document.getElementById("email").value;
-	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+	var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if(!regEx.test(email)){
+    	alert("Incorrect Email Id")
+    	return false;
+    }
 	
 	var contact = document.getElementById("mobno").value;
 	if(isNaN(contact)){

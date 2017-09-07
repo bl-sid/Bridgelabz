@@ -2,9 +2,8 @@ $(document).ready(function() {
 			
 			var titleName = "";
 			var id = $('#hidden-id-button').val();
-			alert(id);
 			console.log(id);
-			$('.category').click(function() {
+			$('.category').click(function loadCategoryBooks() {
 				var category = this.innerHTML;
 				console.log("Category clicked");
 				$.ajax({
@@ -94,6 +93,7 @@ $(document).ready(function() {
 						success : function(data) {
 							$('.category-header').html(bookname);
 							$('.category-books').html(data);
+							console.log("Success in loading" + data);
 						}
 					});
 				});
@@ -130,7 +130,7 @@ $(document).ready(function() {
 
 				$("body .book-delete").on("click", function() {
 					var bookname = $(this).attr('class');
-					bookname = bookname.replace("close book-delete ", "");
+					bookname = bookname.replace("form-pull-right book-delete ", "");
 					$.ajax({
 						type : "post",
 						url : "DeleteBook",
@@ -139,7 +139,8 @@ $(document).ready(function() {
 							id : id
 						},
 						success : function(data) {
-							$('#category-data').modal('hide');
+							//$('#category-data').modal('hide');
+							loadCategoryBooks();
 						}
 					});
 				});

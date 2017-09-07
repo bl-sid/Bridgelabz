@@ -68,7 +68,7 @@
 					<p id="para">
 						By Clicking on the "Create an account" button below, you certify
 						that you have read and agreed to our <a href="#">terms of use</a>
-						and <a href="#">privacy policy<a>
+						and <a href="#">privacy policy</a>
 					</p>
 					<center>
 						<input type="submit" value="Create An Account"
