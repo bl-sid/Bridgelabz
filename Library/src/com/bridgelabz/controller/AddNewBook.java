@@ -22,10 +22,11 @@ public class AddNewBook extends HttpServlet {
 		String author = request.getParameter("author");
 		String category = request.getParameter("category");
 		int price = Integer.parseInt(request.getParameter("price"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		//to know old title to edit database if the title is changed after editing book info
 		String oldTitle = request.getParameter("oldTitle");
 
-		Book book = new Book(title, author, category, price);
+		Book book = new Book(title, author, category, price, id);
 		LibraryDatabase database = new LibraryDatabase();
 		if (oldTitle.equals("")) {
 			database.addNewBook(book);			

@@ -1,13 +1,19 @@
 $(document).ready(function() {
 			
 			var titleName = "";
+			var id = $('#hidden-id-button').val();
+			alert(id);
+			console.log(id);
 			$('.category').click(function() {
 				var category = this.innerHTML;
-
+				console.log("Category clicked");
 				$.ajax({
-					type : "get",
+					type : "post",
 					url : "BookTitleLoader",
-					data : "category=" + category,
+					data : {
+						category : category,
+						id : id
+					},
 					success : function(data) {
 						$('.category-header').html(category + " Books");
 						$('.category-books').html(data);
@@ -49,7 +55,8 @@ $(document).ready(function() {
 							author : $('#author').val(),
 							category : $('#categoryid').val(),
 							price : $('#price').val(),
-							oldTitle : titleName
+							oldTitle : titleName,
+							id : id
 						},
 						success : function(data) {
 							$('#add-data').modal('hide');
@@ -78,9 +85,12 @@ $(document).ready(function() {
 					var bookname = $(this).text();
 
 					$.ajax({
-						type : "get",
+						type : "post",
 						url : "BookDetailsLoader",
-						data : "title=" + bookname,
+						data : {
+							title : bookname, 
+							id : id
+						},
 						success : function(data) {
 							$('.category-header').html(bookname);
 							$('.category-books').html(data);
@@ -95,10 +105,13 @@ $(document).ready(function() {
 					var bookname = $(this).attr('class');
 					bookname = bookname.replace("form-pull-right book-edit ", "");
 					$.ajax({
-						type : "get",
+						type : "post",
 						url : "EditBook",
 						dataType : "json",
-						data : "title=" + bookname,
+						data : {
+							title : bookname,
+							id : id
+						},
 						success : function(data) {
 							titleName = data.title;
 							$('.add-header').html("Edit Book");
@@ -119,9 +132,12 @@ $(document).ready(function() {
 					var bookname = $(this).attr('class');
 					bookname = bookname.replace("close book-delete ", "");
 					$.ajax({
-						type : "get",
+						type : "post",
 						url : "DeleteBook",
-						data : "title=" + bookname,
+						data : {
+							title : bookname,
+							id : id
+						},
 						success : function(data) {
 							$('#category-data').modal('hide');
 						}

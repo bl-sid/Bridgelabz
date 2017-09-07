@@ -21,6 +21,15 @@
 </head>
 <body>
 
+<% 
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    // Redirects to homepage if already logged in
+    String email = (String)session.getAttribute("email"); 
+    if(email != null && !email.equals("")){
+        response.sendRedirect("homepage.jsp");
+    }
+    %>
 
 	<div class="container">
 

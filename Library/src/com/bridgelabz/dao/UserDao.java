@@ -70,8 +70,8 @@ public class UserDao {
 	 * @param password - password entered by the user
 	 * @return true if email and password matches with the database values
 	 */
-	public boolean logInCheck(String email, String password) {
-		String query = "select password from user where email = ?";
+	public User logInCheck(String email, String password) {
+		String query = "select * from user where email = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(query);
@@ -79,8 +79,13 @@ public class UserDao {
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
 			if (password.equals(resultSet.getString("password"))) {
+				String name = resultSet.getString("name");
+				String contact = resultSet.getString("contact");
+				String gender = resultSet.getString("gender");
+				int id = resultSet.getInt("id");
+				User user = new User(name, email, contact, gender, password, id);
 				log.debug("User successfully logged in");
-				return true;
+				return user;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,6 +99,6 @@ public class UserDao {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return null;
 	}
 }

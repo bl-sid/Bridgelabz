@@ -23,6 +23,8 @@ public class LogOut extends HttpServlet {
 		final Logger log = Logger.getRootLogger();
 		HttpSession session = request.getSession();
 		session.removeAttribute("email");
+		session.removeAttribute("id");
+		session.removeAttribute("name");
 		session.invalidate();
 		log.debug("Successfully logged out");
 		PrintWriter out = response.getWriter();

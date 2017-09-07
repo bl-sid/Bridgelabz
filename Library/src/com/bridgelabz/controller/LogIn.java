@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.bridgelabz.dao.UserDao;
+import com.bridgelabz.model.User;
 
 @WebServlet("/LogIn")
 public class LogIn extends HttpServlet {
@@ -33,11 +34,13 @@ public class LogIn extends HttpServlet {
         	log.error("Email or password could not be validated");
         }
 		UserDao dao = new UserDao();
-		boolean loggedIn = dao.logInCheck(email, password);
+		User user = dao.logInCheck(email, password);
 
-		if (loggedIn) {			
+		if (user != null) {			
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
+			session.setAttribute("id", String.valueOf(user.getId()));
+			session.setAttribute("name", user.getName());
 			response.sendRedirect("homepage.jsp");
 		} else {
 			response.sendRedirect("index.jsp");

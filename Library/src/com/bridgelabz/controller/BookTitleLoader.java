@@ -21,10 +21,11 @@ public class BookTitleLoader extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Book Titles Loader called");
 		String category = request.getParameter("category");
+		int id = Integer.parseInt(request.getParameter("id"));
 		StringBuilder builder = new StringBuilder();
 		LibraryDatabase database = new LibraryDatabase();
 		PrintWriter out = response.getWriter();
-		ArrayList<String> bookTitles = database.getCategoryData(category);
+		ArrayList<String> bookTitles = database.getCategoryData(category,id);
 		builder.append("<ol>");
 		for (String title : bookTitles) {
 			builder.append("<li>");

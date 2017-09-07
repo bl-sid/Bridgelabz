@@ -27,8 +27,9 @@ public class EditBook extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Book Editor called");
 		String title = request.getParameter("title");
+		int id = Integer.parseInt(request.getParameter("id"));
 		LibraryDatabase database = new LibraryDatabase();
-		Book book = database.getBookDetails(title);
+		Book book = database.getBookDetails(title, id);
 		
 		JSONObject jsonBook = new JSONObject();
 		jsonBook.put("title", book.getTitle());

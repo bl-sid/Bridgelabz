@@ -21,11 +21,6 @@
 
 <title>Home</title>
 
-<style type="text/css">
-
-
-
-</style>
 
 <!-- Jquery, Ajax link -->
     <script
@@ -67,9 +62,11 @@
 
 		//If not logged in redirects to log in page
 		String email = (String) session.getAttribute("email");
+		String id = (String)session.getAttribute("id");
 		if (email == null || email.equals("")) {
 			response.sendRedirect("index.jsp");
 		}
+		out.print("<input type='button' id='hidden-id-button' value='" + id + "' style='display: none;'>");
 	%>
 
 	<!-- Navigation bar -->
@@ -79,7 +76,7 @@
 			<a class="navbar-brand" href="#">Library</a>
 		</div>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><%=session.getAttribute("email") + "&nbsp;&nbsp;&nbsp;&nbsp;"%></li>
+			<li class="nav-item"><%=session.getAttribute("name") + "&nbsp;&nbsp;&nbsp;&nbsp;"%></li>
 			<li class="nav-item" id="btn-logout"><a href="#">Logout</a></li>
 		</ul>
 	</div>

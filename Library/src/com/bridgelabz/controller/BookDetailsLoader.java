@@ -22,8 +22,9 @@ public class BookDetailsLoader extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Book Details Loader called");
 		String title = request.getParameter("title");
+		int id = Integer.parseInt(request.getParameter("id"));
 		LibraryDatabase database = new LibraryDatabase();
-		Book book = database.getBookDetails(title);
+		Book book = database.getBookDetails(title, id);
 		
 		PrintWriter out = response.getWriter();
 		StringBuilder builder = new StringBuilder();

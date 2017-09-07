@@ -18,8 +18,9 @@ public class DeleteBook extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Book Delete called");
 		String title = request.getParameter("title");
+		int id = Integer.parseInt(request.getParameter("id"));
 		LibraryDatabase database = new LibraryDatabase();
-		database.deleteBook(title);
+		database.deleteBook(title, id);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

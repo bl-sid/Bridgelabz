@@ -51,7 +51,7 @@ public class Register extends HttpServlet {
 				log.error("Password is too short");
 				response.sendRedirect("registration.jsp");
 			} else{
-				User user = new User(name, email, contact, gender, password);
+				User user = new User(name, email, contact, gender, password, 0);
 				
 				UserDao dao = new UserDao();
 				dao.addUser(user);
