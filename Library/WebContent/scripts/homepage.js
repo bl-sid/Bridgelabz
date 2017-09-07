@@ -1,11 +1,17 @@
 $(document).ready(function() {
 			
 			var titleName = "";
+			var lastLoadedCategory = "";
 			var id = $('#hidden-id-button').val();
 			console.log(id);
-			$('.category').click(function loadCategoryBooks() {
-				var category = this.innerHTML;
-				console.log("Category clicked");
+			$('.category').click(function(){
+				category = this.innerHTML;
+				lastLoadedCategory = category;
+				loadCategoryBooks(category);	
+				$('#category-data').modal('show');				
+			});
+
+			function loadCategoryBooks(category) {
 				$.ajax({
 					type : "post",
 					url : "BookTitleLoader",
@@ -16,12 +22,14 @@ $(document).ready(function() {
 					success : function(data) {
 						$('.category-header').html(category + " Books");
 						$('.category-books').html(data);
-						$('#category-data').modal('show');
 						refreshClickEvent();
 					}
 				});
-			});
-
+				
+			}
+			
+			
+			
 			$('#btn-close').click(function(){
 				$('#category-data').modal('hide');
 			});
@@ -140,7 +148,10 @@ $(document).ready(function() {
 						},
 						success : function(data) {
 							//$('#category-data').modal('hide');
-							loadCategoryBooks();
+							loadCategoryBooks(lastLoadedCategory);
+							//var myli = $(this).closest('li');
+							//myli.hide();
+							//console.log("Delete success");
 						}
 					});
 				});
