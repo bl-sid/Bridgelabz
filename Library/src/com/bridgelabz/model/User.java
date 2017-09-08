@@ -9,15 +9,15 @@ public class User {
 	private String contact;
 	private String gender;
 	private String password;
-	private int id;
+	private int userId;
 
-	public User(String name, String email, String contact, String gender, String password, int id){
+	public User(String name, String email, String contact, String gender, String password, int userId){
 		this.name = name;
 		this.email = email;
 		this.contact = contact;
 		this.gender = gender;
 		this.password = password;
-		this.id = id;
+		this.userId = userId;
 	}
 	
 	public String getName(){
@@ -40,11 +40,11 @@ public class User {
 		return password;
 	}
 	
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }

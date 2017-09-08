@@ -82,8 +82,8 @@ public class UserDao {
 				String name = resultSet.getString("name");
 				String contact = resultSet.getString("contact");
 				String gender = resultSet.getString("gender");
-				int id = resultSet.getInt("id");
-				User user = new User(name, email, contact, gender, password, id);
+				int userId = resultSet.getInt("user_id");
+				User user = new User(name, email, contact, gender, password, userId);
 				log.debug("User successfully logged in");
 				return user;
 			}

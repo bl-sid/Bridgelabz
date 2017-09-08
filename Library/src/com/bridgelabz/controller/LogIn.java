@@ -39,7 +39,7 @@ public class LogIn extends HttpServlet {
 		if (user != null) {			
 			HttpSession session = request.getSession();
 			session.setAttribute("email", email);
-			session.setAttribute("id", String.valueOf(user.getId()));
+			session.setAttribute("user_id", String.valueOf(user.getUserId()));
 			session.setAttribute("name", user.getName());
 			response.sendRedirect("homepage.jsp");
 		} else {

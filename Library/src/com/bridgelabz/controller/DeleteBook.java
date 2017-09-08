@@ -17,10 +17,10 @@ public class DeleteBook extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Book Delete called");
-		String title = request.getParameter("title");
-		int id = Integer.parseInt(request.getParameter("id"));
+		int bookId = Integer.parseInt(request.getParameter("book_id"));
+		int UserId = Integer.parseInt(request.getParameter("user_id"));
 		LibraryDatabase database = new LibraryDatabase();
-		database.deleteBook(title, id);
+		database.deleteBook(bookId, UserId);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

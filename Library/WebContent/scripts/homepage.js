@@ -1,9 +1,10 @@
 $(document).ready(function() {
 			
-			var titleName = "";
+			//var titleName = "";
 			var lastLoadedCategory = "";
-			var id = $('#hidden-id-button').val();
-			console.log(id);
+			var editBookId = "";
+			var user_id = $('#hidden-id-button').val();
+			console.log(user_id);
 			$('.category').click(function(){
 				category = this.innerHTML;
 				lastLoadedCategory = category;
@@ -12,12 +13,13 @@ $(document).ready(function() {
 			});
 
 			function loadCategoryBooks(category) {
+				console.log(category + " " + user_id);
 				$.ajax({
 					type : "post",
 					url : "BookTitleLoader",
 					data : {
 						category : category,
-						id : id
+						user_id : user_id
 					},
 					success : function(data) {
 						$('.category-header').html(category + " Books");
@@ -40,7 +42,8 @@ $(document).ready(function() {
 				$('#author').val("");
 				$('#categoryid').val("Category");
 				$('#price').val("");
-				titleName = "";
+				editBookId = "";
+				//titleName = "";
 				$('#add-data').modal('show'); 
 			});
 			
@@ -53,7 +56,8 @@ $(document).ready(function() {
 					alert("Please select the category of the book");
 				}  else if(!$('#price').val()){
 					alert("Price field is empty");
-				} else{	 			
+				} else{	 	
+					console.log("user id " + user_id);
 					$.ajax({
 						type : "post",
 						url : "AddNewBook",
@@ -62,12 +66,14 @@ $(document).ready(function() {
 							author : $('#author').val(),
 							category : $('#categoryid').val(),
 							price : $('#price').val(),
-							oldTitle : titleName,
-							id : id
+							//oldTitle : titleName,
+							user_id : user_id,
+							book_id : editBookId
 						},
 						success : function(data) {
 							$('#add-data').modal('hide');
-							titleName = "";
+							editBookId = "";
+							//titleName = "";
 						}
 					});
 				}
@@ -89,14 +95,15 @@ $(document).ready(function() {
 				$("body .book-title").off();
 
 				$("body .book-title").on("click", function() {
+					var bookId = $(this).attr('id').replace("title" , "");
 					var bookname = $(this).text();
-
+					console.log("book id " + bookId);
 					$.ajax({
 						type : "post",
 						url : "BookDetailsLoader",
 						data : {
-							title : bookname, 
-							id : id
+							book_id : bookId, 
+							user_id : user_id
 						},
 						success : function(data) {
 							$('.category-header').html(bookname);
@@ -110,23 +117,25 @@ $(document).ready(function() {
 				$("body .book-edit").off();
 
 				$("body .book-edit").on("click", function() {
-					var bookname = $(this).attr('class');
-					bookname = bookname.replace("form-pull-right book-edit ", "");
+					var bookId = $(this).attr('id').replace('edit', '');
+					console.log("Edit clicked on " + bookId + " " + user_id);
 					$.ajax({
 						type : "post",
 						url : "EditBook",
 						dataType : "json",
 						data : {
-							title : bookname,
-							id : id
+							book_id : bookId,
+							user_id : user_id
 						},
 						success : function(data) {
-							titleName = data.title;
 							$('.add-header').html("Edit Book");
 							$('#title').val(data.title);
 							$('#author').val(data.author);
 							$('#categoryid').val(data.category);
 							$('#price').val(data.price);
+							
+							editBookId = bookId;
+							
 							$('#category-data').modal('hide');
 							$('#add-data').modal('show'); 
 						}
@@ -137,14 +146,13 @@ $(document).ready(function() {
 				$("body .book-delete").off();
 
 				$("body .book-delete").on("click", function() {
-					var bookname = $(this).attr('class');
-					bookname = bookname.replace("form-pull-right book-delete ", "");
+					var bookId = $(this).attr('id').replace('delete', '');
 					$.ajax({
 						type : "post",
 						url : "DeleteBook",
 						data : {
-							title : bookname,
-							id : id
+							book_id : bookId,
+							user_id : user_id
 						},
 						success : function(data) {
 							//$('#category-data').modal('hide');

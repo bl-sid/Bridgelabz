@@ -39,7 +39,7 @@ public class LibraryDatabase {
 	 * @return	status of the result
 	 */
 	public void addNewBook(Book book) {
-		String query = "insert into books (title, author, category, price, id) values (?, ?, ?, ?, ?)";
+		String query = "insert into books (title, author, category, price, user_id) values (?, ?, ?, ?, ?)";
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(query);
@@ -47,7 +47,7 @@ public class LibraryDatabase {
 			statement.setString(2, book.getAuthor());
 			statement.setString(3, book.getCategory());
 			statement.setInt(4, book.getPrice());
-			statement.setInt(5, book.getId());
+			statement.setInt(5, book.getUserId());
 			statement.executeUpdate();
 			log.debug("New book added");
 		} catch (SQLException e) {
@@ -69,8 +69,8 @@ public class LibraryDatabase {
 	 * @param book - reference of the book object to be updated
 	 * @param oldTitle - old title of the book
 	 */
-	public void updateBook(Book book, String oldTitle){
-		String query = "update books set title = ?, author = ?, category = ?, price = ?, id = ? where title = ? and id = ?";
+	public void updateBook(Book book, int bookId, int userId){
+		String query = "update books set title = ?, author = ?, category = ?, price = ?, user_id = ? where book_id = ? and user_id = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(query);
@@ -78,9 +78,9 @@ public class LibraryDatabase {
 			statement.setString(2, book.getAuthor());
 			statement.setString(3, book.getCategory());
 			statement.setInt(4, book.getPrice());
-			statement.setInt(5, book.getId());
-			statement.setString(6, oldTitle);
-			statement.setInt(7, book.getId());
+			statement.setInt(5, book.getUserId());
+			statement.setInt(6, bookId);
+			statement.setInt(7, userId);
 			statement.executeUpdate();
 			log.debug("Book updated");
 		} catch (SQLException e) {
@@ -101,13 +101,13 @@ public class LibraryDatabase {
 	 * Deletes a book
 	 * @param title title of the book to be deleted
 	 */
-	public void deleteBook(String title, int id){
-		String query = "delete from books where title = ? and id = ?";
+	public void deleteBook(int bookId, int userId){
+		String query = "delete from books where book_id = ? and user_id = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(query);
-			statement.setString(1, title);
-			statement.setInt(2, id);
+			statement.setInt(1, bookId);
+			statement.setInt(2, userId);
 			statement.execute();
 			log.debug("Book deleted successfully");
 		} catch (SQLException e) {
@@ -128,18 +128,23 @@ public class LibraryDatabase {
 	 * @param category - category of which books are to be loaded
 	 * @return arraylist of book titles
 	 */
-	public ArrayList<String> getCategoryData(String category, int id) {
-		ArrayList<String> bookTitles = new ArrayList<String>();
-		String query = "select title from books where category = ? and id = ?";
+	public ArrayList<Book> getCategoryData(String category, int userId) {
+		ArrayList<Book> books = new ArrayList<Book>();
+		String query = "select * from books where category = ? and user_id = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(query);
 			statement.setString(1, category);
-			statement.setInt(2, id);
+			statement.setInt(2, userId);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
+				int bookId = resultSet.getInt("book_id");
 				String title = resultSet.getString("title");
-				bookTitles.add(title);
+				String author = resultSet.getString("author");
+				int price = resultSet.getInt("price");
+				
+				Book book = new Book(bookId, title, author, category, price, userId);
+				books.add(book);
 			}
 			log.debug("Books added to the list");
 		} catch (SQLException e) {
@@ -154,28 +159,29 @@ public class LibraryDatabase {
 				e.printStackTrace();
 			}
 		}
-		return bookTitles;
+		return books;
 	}
 	
 	/**
 	 * @param title - title of the book
 	 * @return book object
 	 */
-	public Book getBookDetails(String title, int id){
+	public Book getBookDetails(int bookId, int userId){
 		Book book = null;
-		String query = "select * from books where title = ? and id = ?";
+		String query = "select * from books where book_id = ? and user_id = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(query);
-			statement.setString(1, title);
-			statement.setInt(2, id);
+			statement.setInt(1, bookId);
+			statement.setInt(2, userId);
 			ResultSet resultSet = statement.executeQuery();
 			resultSet.next();
+			String title = resultSet.getString("title");
 			String author = resultSet.getString("author");
 			String category = resultSet.getString("category");
 			int price = resultSet.getInt("price");
 			
-			book = new Book(title, author, category, price, id);
+			book = new Book(title, author, category, price, userId);
 			log.debug("Book details retrieved from database");
 		} catch (SQLException e) {
 			e.printStackTrace();

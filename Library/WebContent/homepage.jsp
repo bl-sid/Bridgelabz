@@ -62,12 +62,14 @@
 
 		//If not logged in redirects to log in page
 		String email = (String) session.getAttribute("email");
-		String id = (String)session.getAttribute("id");
 		if (email == null || email.equals("")) {
 			response.sendRedirect("index.jsp");
 		}
-		out.print("<input type='button' id='hidden-id-button' value='" + id + "' style='display: none;'>");
+        String userId = (String)session.getAttribute("user_id");		
 	%>
+		
+		<input type='button' id='hidden-id-button' value=<%=userId%> style='display: none;'>
+	
 
 	<!-- Navigation bar -->
 	<nav class="navbar navbar-expand-md nav-color">
